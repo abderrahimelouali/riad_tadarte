@@ -1100,48 +1100,53 @@ export function RiadSite() {
                     href={siteConfig.facebookUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
                   >
-                    <BrandLogo type="facebook" className="size-6" />
+                    <BrandLogo type="facebook" className="size-5 shrink-0" />
+                    <span className="text-xs font-medium tracking-wide text-foreground">Facebook</span>
                   </a>
                   <a
                     aria-label="Instagram"
                     href={siteConfig.instagramUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
                   >
-                    <BrandLogo type="instagram" className="size-6" />
+                    <BrandLogo type="instagram" className="size-5 shrink-0" />
+                    <span className="text-xs font-medium tracking-wide text-foreground">Instagram</span>
                   </a>
                   <a
                     aria-label={`Tripadvisor ${siteConfig.tripadvisorRating}`}
                     href={siteConfig.tripadvisorUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2.5 rounded-full border border-border bg-card px-3.5 py-2 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
                   >
-                    <BrandLogo type="tripadvisor" className="size-6" />
-                    <span className="text-sm font-semibold tracking-wide text-foreground">{siteConfig.tripadvisorRating}</span>
+                    <BrandLogo type="tripadvisor" className="size-5 shrink-0" />
+                    <span className="text-xs font-medium tracking-wide text-foreground">Tripadvisor</span>
+                    <span className="text-xs font-semibold text-accent">{siteConfig.tripadvisorRating}</span>
                   </a>
                   <a
                     aria-label={`Google Maps ${siteConfig.googleMapsRating}`}
                     href={siteConfig.googleMapsUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2.5 rounded-full border border-border bg-card px-3.5 py-2 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
                   >
-                    <BrandLogo type="google" className="size-6" />
-                    <span className="text-sm font-semibold tracking-wide text-foreground">{siteConfig.googleMapsRating}</span>
+                    <BrandLogo type="google" className="size-5 shrink-0" />
+                    <span className="text-xs font-medium tracking-wide text-foreground">Maps</span>
+                    <span className="text-xs font-semibold text-accent">{siteConfig.googleMapsRating}</span>
                   </a>
                   <a
                     aria-label={`Booking.com ${siteConfig.bookingRating}`}
                     href={siteConfig.bookingUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2.5 rounded-full border border-border bg-card px-3.5 py-2 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
                   >
-                    <BrandLogo type="booking" className="size-6" />
-                    <span className="text-sm font-semibold tracking-wide text-foreground">{siteConfig.bookingRating}</span>
+                    <BrandLogo type="booking" className="size-5 shrink-0" />
+                    <span className="text-xs font-medium tracking-wide text-foreground">Booking</span>
+                    <span className="text-xs font-semibold text-accent">{siteConfig.bookingRating}</span>
                   </a>
                 </div>
               </div>
