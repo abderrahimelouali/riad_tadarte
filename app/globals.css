@@ -202,6 +202,19 @@ body {
   color: var(--accent);
 }
 
+/* Keep form / cards readable on dark contact band */
+.section-band-ink .premium-card {
+  color: var(--card-foreground);
+}
+
+.section-band-ink .premium-card .text-muted-foreground {
+  color: var(--muted-foreground);
+}
+
+.section-band-ink .premium-card .text-foreground {
+  color: var(--foreground);
+}
+
 /* Legacy aliases (safe if any remain) */
 .section-band-mist {
   background: var(--band-stone);
@@ -403,12 +416,40 @@ body {
 
 /* Form inputs */
 .input-field {
-  @apply w-full rounded-xl border border-border bg-background px-4 py-3.5 text-sm normal-case tracking-normal outline-none transition-all duration-200;
+  @apply w-full rounded-xl border border-border bg-card px-4 py-3.5 text-sm normal-case tracking-normal text-foreground outline-none transition-all duration-200;
+  color: var(--foreground);
+}
+
+.input-field::placeholder {
+  color: var(--muted-foreground);
+  opacity: 1;
+}
+
+.input-field::-webkit-input-placeholder {
+  color: var(--muted-foreground);
+  opacity: 1;
+}
+
+.input-field::-moz-placeholder {
+  color: var(--muted-foreground);
+  opacity: 1;
 }
 
 .input-field:focus {
   border-color: color-mix(in oklab, var(--accent) 50%, var(--border));
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 12%, transparent);
+}
+
+/* Date/number fields stay dark on light cards even inside dark sections */
+.input-field::-webkit-calendar-picker-indicator {
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+.input-field[type='date'],
+.input-field[type='number'] {
+  color: var(--foreground);
+  color-scheme: light;
 }
 
 /* Gallery filter pill */
