@@ -44,6 +44,16 @@
   --whatsapp: #1aad4f;
   --whatsapp-foreground: #ffffff;
   --radius: 0.875rem;
+
+  /*
+   * Section surfaces — luxury courtyard system
+   * Clear luminance steps so adjacent bands never look “all white”
+   */
+  --band-paper: oklch(0.978 0.005 95);
+  --band-stone: oklch(0.905 0.014 250);
+  --band-dune: oklch(0.895 0.034 68);
+  --band-ink: oklch(0.205 0.018 255);
+  --band-ink-soft: oklch(0.255 0.024 55);
 }
 
 * {
@@ -124,6 +134,13 @@ body {
   text-align: right;
 }
 
+/* Keep phones, emails, URLs LTR inside RTL pages */
+.dir-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: start;
+}
+
 .eyebrow {
   @apply font-mono text-[10px] uppercase tracking-[0.32em] text-accent;
 }
@@ -134,6 +151,73 @@ body {
 
 .section-subtitle {
   @apply mt-5 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg;
+}
+
+/* Full-bleed section color bands */
+.section-band-paper {
+  background: var(--band-paper);
+}
+
+.section-band-stone {
+  background: var(--band-stone);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, white 55%, transparent);
+}
+
+.section-band-dune {
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in oklab, var(--band-dune) 82%, white) 0%,
+      var(--band-dune) 48%,
+      color-mix(in oklab, var(--band-dune) 92%, oklch(0.82 0.04 55)) 100%
+    );
+  box-shadow: inset 0 1px 0 color-mix(in oklab, white 40%, transparent);
+}
+
+.section-band-ink {
+  background:
+    radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 55%),
+    linear-gradient(155deg, var(--band-ink) 0%, var(--band-ink-soft) 52%, var(--band-ink) 100%);
+  color: var(--primary-foreground);
+}
+
+.section-band-ink .section-title {
+  color: var(--primary-foreground);
+}
+
+.section-band-ink .section-subtitle,
+.section-band-ink .text-muted-foreground {
+  color: color-mix(in oklab, var(--primary-foreground) 68%, transparent);
+}
+
+.section-band-ink .eyebrow {
+  color: var(--accent);
+}
+
+.section-band-ink a:not([class*='btn']):not([class*='bg-']):not([class*='border']) {
+  color: color-mix(in oklab, var(--primary-foreground) 92%, transparent);
+}
+
+.section-band-ink a:not([class*='btn']):not([class*='bg-']):not([class*='border']):hover {
+  color: var(--accent);
+}
+
+/* Legacy aliases (safe if any remain) */
+.section-band-mist {
+  background: var(--band-stone);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, white 55%, transparent);
+}
+
+.section-band-sand,
+.section-band-sage {
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in oklab, var(--band-dune) 82%, white) 0%,
+      var(--band-dune) 48%,
+      color-mix(in oklab, var(--band-dune) 92%, oklch(0.82 0.04 55)) 100%
+    );
+  box-shadow: inset 0 1px 0 color-mix(in oklab, white 40%, transparent);
 }
 
 /* Premium surfaces */

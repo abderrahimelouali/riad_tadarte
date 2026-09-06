@@ -722,47 +722,51 @@ export function RiadSite() {
           </a>
         </section>
 
-        {/* Trust strip */}
-        <section className="relative z-10 -mt-8 mx-5 lg:mx-auto lg:max-w-5xl">
-          <div className="premium-card grid grid-cols-2 gap-px overflow-hidden bg-border md:grid-cols-4">
-            {trustItems.map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center gap-3 bg-card px-5 py-5 md:justify-center md:px-6">
-                <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
-                  <Icon className="size-4" strokeWidth={1.5} />
+        {/* Trust strip — elevated white cards on cool mist for clear trust signal */}
+        <section className="section-band-stone relative z-10 pb-10 pt-0">
+          <div className="-mt-8 mx-5 lg:mx-auto lg:max-w-5xl">
+            <div className="premium-card grid grid-cols-2 gap-px overflow-hidden bg-border shadow-lg md:grid-cols-4">
+              {trustItems.map(({ icon: Icon, label }) => (
+                <div key={label} className="flex items-center gap-3 bg-card px-5 py-5 md:justify-center md:px-6">
+                  <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
+                    <Icon className="size-4" strokeWidth={1.5} />
+                  </div>
+                  <span className="text-xs font-medium tracking-wide text-foreground">{label}</span>
                 </div>
-                <span className="text-xs font-medium tracking-wide text-foreground">{label}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Intro */}
-        <section id="riad" className="mx-auto max-w-6xl px-5 py-28 lg:px-8 lg:py-36">
-          <div className="grid gap-16 lg:grid-cols-2 lg:gap-20 lg:items-center">
-            <Reveal>
-              <div className="line-accent mb-6" />
-              <p className="eyebrow">{t.spirit}</p>
-              <h2 className="section-title">{t.introTitle}</h2>
-            </Reveal>
-            <Reveal delay={1}>
-              <p className="text-lg leading-relaxed text-muted-foreground">{t.intro}</p>
-              <p className="mt-5 leading-relaxed text-muted-foreground">{t.intro2}</p>
-              <div className="mt-10 grid grid-cols-2 gap-4">
-                {t.facts.map((f) => (
-                  <div key={f} className="flex items-center gap-2.5 text-sm">
-                    <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
-                      <Check className="size-3" strokeWidth={2.5} />
-                    </span>
-                    {f}
-                  </div>
-                ))}
-              </div>
-            </Reveal>
+        <section id="riad" className="section-band-paper">
+          <div className="mx-auto max-w-6xl px-5 py-28 lg:px-8 lg:py-36">
+            <div className="grid gap-16 lg:grid-cols-2 lg:gap-20 lg:items-center">
+              <Reveal>
+                <div className="line-accent mb-6" />
+                <p className="eyebrow">{t.spirit}</p>
+                <h2 className="section-title">{t.introTitle}</h2>
+              </Reveal>
+              <Reveal delay={1}>
+                <p className="text-lg leading-relaxed text-muted-foreground">{t.intro}</p>
+                <p className="mt-5 leading-relaxed text-muted-foreground">{t.intro2}</p>
+                <div className="mt-10 grid grid-cols-2 gap-4">
+                  {t.facts.map((f) => (
+                    <div key={f} className="flex items-center gap-2.5 text-sm">
+                      <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
+                        <Check className="size-3" strokeWidth={2.5} />
+                      </span>
+                      {f}
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
           </div>
         </section>
 
         {/* Riad banner */}
-        <section className="bg-secondary/30">
+        <section className="section-band-dune">
           <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
             <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-end">
               <Reveal scale>
@@ -786,22 +790,24 @@ export function RiadSite() {
         </section>
 
         {/* Riad cards */}
-        <section className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
-          <div className="grid gap-6 md:grid-cols-3">
-            {riadCards.map(({ title, text }, i) => (
-              <Reveal key={title} delay={i + 1}>
-                <article className="premium-card group h-full p-8 lg:p-10">
-                  <span className="font-mono text-[10px] text-accent">0{i + 1}</span>
-                  <h3 className="mt-8 font-serif text-2xl tracking-tight transition-colors group-hover:text-accent">{title}</h3>
-                  <p className="mt-4 leading-relaxed text-muted-foreground">{text}</p>
-                </article>
-              </Reveal>
-            ))}
+        <section className="section-band-paper">
+          <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
+            <div className="grid gap-6 md:grid-cols-3">
+              {riadCards.map(({ title, text }, i) => (
+                <Reveal key={title} delay={i + 1}>
+                  <article className="premium-card group h-full p-8 lg:p-10">
+                    <span className="font-mono text-[10px] text-accent">0{i + 1}</span>
+                    <h3 className="mt-8 font-serif text-2xl tracking-tight transition-colors group-hover:text-accent">{title}</h3>
+                    <p className="mt-4 leading-relaxed text-muted-foreground">{text}</p>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Rooms */}
-        <section id="rooms" className="border-y border-border bg-secondary/40">
+        <section id="rooms" className="section-band-stone">
           <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
             <Reveal>
               <p className="eyebrow">{t.rooms}</p>
@@ -849,41 +855,43 @@ export function RiadSite() {
         </section>
 
         {/* Dining */}
-        <section className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
-          <Reveal>
-            <p className="eyebrow">{t.dining}</p>
-            <h2 className="section-title">{t.dining}</h2>
-            <p className="section-subtitle">{t.diningText}</p>
-          </Reveal>
-          <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:gap-5">
-            {[
-              { label: t.breakfast, src: '/images/breakfast.jpg', alt: t.breakfast },
-              { label: t.tea, src: '/images/tea.jpg', alt: t.tea },
-              { label: t.local, src: '/images/moroccanfood.jpeg', alt: t.local },
-            ].map((item, i) => (
-              <Reveal key={item.src} delay={i + 1}>
-                <article className="premium-card group overflow-hidden">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      fill
-                      className="img-zoom object-cover"
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    />
-                  </div>
-                  <div className="flex items-center gap-4 p-5">
-                    <span className="font-mono text-xs text-accent">0{i + 1}</span>
-                    <p className="font-serif text-xl tracking-tight">{item.label}</p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
+        <section className="section-band-dune">
+          <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
+            <Reveal>
+              <p className="eyebrow">{t.dining}</p>
+              <h2 className="section-title">{t.dining}</h2>
+              <p className="section-subtitle">{t.diningText}</p>
+            </Reveal>
+            <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:gap-5">
+              {[
+                { label: t.breakfast, src: '/images/breakfast.jpg', alt: t.breakfast },
+                { label: t.tea, src: '/images/tea.jpg', alt: t.tea },
+                { label: t.local, src: '/images/moroccanfood.jpeg', alt: t.local },
+              ].map((item, i) => (
+                <Reveal key={item.src} delay={i + 1}>
+                  <article className="premium-card group overflow-hidden">
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        fill
+                        className="img-zoom object-cover"
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      />
+                    </div>
+                    <div className="flex items-center gap-4 p-5">
+                      <span className="font-mono text-xs text-accent">0{i + 1}</span>
+                      <p className="font-serif text-xl tracking-tight">{item.label}</p>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Experiences */}
-        <section id="experiences" className="bg-secondary/40">
+        <section id="experiences" className="section-band-stone">
           <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
             <Reveal>
               <p className="eyebrow">{t.experiences}</p>
@@ -934,12 +942,13 @@ export function RiadSite() {
         </section>
 
         {/* Why choose */}
-        <section className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
-          <Reveal>
-            <p className="eyebrow">{t.why}</p>
-            <h2 className="section-title">{t.why}</h2>
-          </Reveal>
-          <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:gap-5">
+        <section className="section-band-paper">
+          <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
+            <Reveal>
+              <p className="eyebrow">{t.why}</p>
+              <h2 className="section-title">{t.why}</h2>
+            </Reveal>
+            <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:gap-5">
             {[
               { label: t.reasons[0], src: '/images/sky-night.jpg' },
               { label: t.reasons[1], src: '/images/moroccan-hospitality.jpg' },
@@ -1004,11 +1013,12 @@ export function RiadSite() {
                 </div>
               </article>
             </Reveal>
+            </div>
           </div>
         </section>
 
         {/* Gallery */}
-        <section id="gallery" className="bg-secondary/50">
+        <section id="gallery" className="section-band-stone">
           <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
             <Reveal>
               <h2 className="font-serif text-4xl tracking-tight md:text-5xl">{t.gallery}</h2>
@@ -1044,34 +1054,36 @@ export function RiadSite() {
         </section>
 
         {/* Location */}
-        <section id="location" className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-            <Reveal>
-              <p className="eyebrow">{t.location}</p>
-              <h2 className="section-title">{t.locationTitle}</h2>
-              <p className="section-subtitle">{t.locationText}</p>
-              <a href={siteConfig.googleMapsUrl} target="_blank" rel="noreferrer" className="btn-primary mt-10">
-                <MapPin className="size-4 text-accent" />
-                {contactLabels.maps}
-              </a>
-            </Reveal>
-            <Reveal delay={2} scale>
-              <div className="premium-card overflow-hidden">
-                <iframe
-                  title={contactLabels.maps}
-                  src="https://www.google.com/maps?q=31.1418733,-4.0275585&z=15&output=embed"
-                  className="h-80 w-full border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-                <p className="border-t border-border px-5 py-4 text-center text-xs text-muted-foreground">{siteConfig.location}</p>
-              </div>
-            </Reveal>
+        <section id="location" className="section-band-dune">
+          <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
+            <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+              <Reveal>
+                <p className="eyebrow">{t.location}</p>
+                <h2 className="section-title">{t.locationTitle}</h2>
+                <p className="section-subtitle">{t.locationText}</p>
+                <a href={siteConfig.googleMapsUrl} target="_blank" rel="noreferrer" className="btn-primary mt-10">
+                  <MapPin className="size-4 text-accent" />
+                  {contactLabels.maps}
+                </a>
+              </Reveal>
+              <Reveal delay={2} scale>
+                <div className="premium-card overflow-hidden">
+                  <iframe
+                    title={contactLabels.maps}
+                    src="https://www.google.com/maps?q=31.1418733,-4.0275585&z=15&output=embed"
+                    className="h-80 w-full border-0"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                  <p className="border-t border-border px-5 py-4 text-center text-xs text-muted-foreground">{siteConfig.location}</p>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </section>
 
-        {/* Contact */}
-        <section id="contact" className="border-t border-border bg-secondary/40">
+        {/* Contact — charcoal band for clear conversion focus */}
+        <section id="contact" className="section-band-ink">
           <div className="mx-auto grid max-w-6xl gap-16 px-5 py-24 lg:grid-cols-[1fr_1.2fr] lg:px-8 lg:py-32">
             <Reveal>
               <p className="eyebrow">{t.direct}</p>
@@ -1084,13 +1096,13 @@ export function RiadSite() {
                 </div>
                 <div>
                   <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-accent">{contactLabels.whatsapp}</span>
-                  <a href={wa(message)} className="transition-colors hover:text-accent">
+                  <a href={wa(message)} className="dir-ltr inline-block transition-colors hover:text-accent">
                     {siteConfig.phone}
                   </a>
                 </div>
                 <div>
                   <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-accent">{contactLabels.email}</span>
-                  <a href={`mailto:${siteConfig.email}`} className="transition-colors hover:text-accent">
+                  <a href={`mailto:${siteConfig.email}`} className="dir-ltr inline-block transition-colors hover:text-accent">
                     {siteConfig.email}
                   </a>
                 </div>
@@ -1208,7 +1220,7 @@ export function RiadSite() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-primary text-primary-foreground">
+      <footer className="border-t border-primary-foreground/10 bg-primary text-primary-foreground">
         <div className="mx-auto max-w-6xl px-5 py-16 lg:px-8">
           <div className="flex flex-col justify-between gap-10 md:flex-row md:items-start">
             <div>
