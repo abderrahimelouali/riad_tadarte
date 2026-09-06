@@ -815,7 +815,7 @@ export function RiadSite() {
               <p className="section-subtitle">{t.roomsText}</p>
             </Reveal>
 
-            <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:gap-5">
+            <div className="mt-14 grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-3 lg:gap-5">
               {rooms.map((room, index) => {
                 const localized = localizedRooms[locale][index]
                 return (
