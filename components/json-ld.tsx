@@ -10,7 +10,7 @@ export function JsonLd() {
       'Authentic guest house in Merzouga, Morocco. Moroccan hospitality, comfortable rooms, and Sahara experiences.',
     url: SITE_URL,
     image: `${SITE_URL}/images/hero-camel.jpg`,
-    telephone: siteConfig.phone,
+    telephone: [siteConfig.phone, siteConfig.phoneSecondary],
     email: siteConfig.email,
     address: {
       '@type': 'PostalAddress',

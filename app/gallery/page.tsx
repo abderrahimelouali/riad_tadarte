@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'Riad Tadarte Gallery',
     description: 'Photos from our guest house and the Sahara desert around Merzouga.',
     url: '/gallery',
-    images: [{ url: '/images/gallery/photo_001.jpg', alt: 'Riad Tadarte gallery' }],
+    images: [{ url: '/images/gallery/featured_001.jpg', alt: 'Riad Tadarte gallery' }],
   },
 }
 

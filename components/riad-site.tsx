@@ -18,6 +18,15 @@ import { experiences, galleryImages, rooms, siteConfig } from '@/config/site'
 
 type Locale = 'fr' | 'en' | 'es' | 'ar'
 
+/** Three gallery images for the hero auto-scroll — from Why cards */
+const HERO_SLIDES = [
+  { src: '/images/sky-night.jpg', category: 'Gallery', alt: 'An authentic address — Merzouga night sky' },
+  { src: '/images/immersion-desert.jpeg', category: 'Gallery', alt: 'Immersion in the desert — Merzouga dunes' },
+  { src: '/images/peaceful.jpeg', category: 'Gallery', alt: 'A peaceful atmosphere — Riad Tadarte' },
+] as const
+
+const HERO_INTERVAL_MS = 5500
+
 const copy = {
   fr: {
     dir: 'ltr',
@@ -377,8 +386,8 @@ const localizedExperiences: Record<Locale, { title: string; description: string 
   ],
 }
 
-const wa = (message: string) =>
-  siteConfig.whatsappNumber.startsWith('[') ? '#' : `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`
+const wa = (message: string, number = siteConfig.whatsappNumber) =>
+  number.startsWith('[') ? '#' : `https://wa.me/${number}?text=${encodeURIComponent(message)}`
 
 function useReveal(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null)
@@ -520,6 +529,7 @@ export function RiadSite() {
   const [menu, setMenu] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [arrivalDate, setArrivalDate] = useState('')
+  const [heroSlide, setHeroSlide] = useState(0)
   const t = translations[locale]
   const now = new Date()
   const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
@@ -529,6 +539,14 @@ export function RiadSite() {
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const id = window.setInterval(() => {
+      setHeroSlide((i) => (i + 1) % HERO_SLIDES.length)
+    }, HERO_INTERVAL_MS)
+    return () => window.clearInterval(id)
   }, [])
 
   useEffect(() => {
@@ -561,12 +579,12 @@ export function RiadSite() {
 
   const contactLabels =
     locale === 'ar'
-      ? { whatsapp: 'واتساب', email: 'البريد الإلكتروني', maps: 'افتح في خرائط Google', heroAlt: 'واجهة رياض تادارت التقليدية في حاسي لبيض' }
+      ? { whatsapp: 'واتساب', email: 'البريد الإلكتروني', maps: 'افتح في خرائط Google', heroAlt: 'غروب الشمس فوق كثبان مرزوكة في الصحراء المغربية' }
       : locale === 'en'
-        ? { whatsapp: 'WhatsApp', email: 'Email', maps: 'Open in Google Maps', heroAlt: 'Traditional Riad Tadarte façade in Hassi Labied' }
+        ? { whatsapp: 'WhatsApp', email: 'Email', maps: 'Open in Google Maps', heroAlt: 'Sunset over the sand dunes of Merzouga, Morocco' }
         : locale === 'es'
-          ? { whatsapp: 'WhatsApp', email: 'Correo electrónico', maps: 'Abrir en Google Maps', heroAlt: 'Fachada tradicional de Riad Tadarte en Hassi Labied' }
-          : { whatsapp: 'WhatsApp', email: 'Email', maps: 'Ouvrir dans Google Maps', heroAlt: 'Façade traditionnelle de Riad Tadarte à Hassi Labied' }
+          ? { whatsapp: 'WhatsApp', email: 'Correo electrónico', maps: 'Abrir en Google Maps', heroAlt: 'Atardecer sobre las dunas de Merzouga, Marruecos' }
+          : { whatsapp: 'WhatsApp', email: 'Email', maps: 'Ouvrir dans Google Maps', heroAlt: 'Coucher de soleil sur les dunes de Merzouga, Maroc' }
 
   const navIds = ['riad', 'rooms', 'experiences', 'gallery', 'location']
   const languages: { code: Locale; label: string; name: string }[] = [
@@ -678,53 +696,86 @@ export function RiadSite() {
       </header>
 
       <main id="top">
-        {/* Hero */}
-        <section className="relative flex min-h-screen items-end overflow-hidden bg-primary text-primary-foreground">
-          <div className="absolute inset-0 animate-hero-zoom">
-            <Image
-              src="/images/hero-camel.jpg"
-              alt={contactLabels.heroAlt}
-              fill
-              priority
-              className="object-cover object-[center_42%] sm:object-[center_38%] lg:object-center"
-              sizes="100vw"
-            />
+        {/* Hero — auto-scrolling gallery slides */}
+        <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-primary text-primary-foreground">
+          <div className="absolute inset-0">
+            {HERO_SLIDES.map((slide, i) => (
+              <div
+                key={slide.src}
+                className={`absolute inset-0 transition-opacity duration-[1400ms] ease-in-out ${
+                  i === heroSlide ? 'opacity-100' : 'opacity-0'
+                }`}
+                aria-hidden={i !== heroSlide}
+              >
+                <div className={`absolute inset-0 ${i === heroSlide ? 'animate-hero-zoom' : ''}`}>
+                  <Image
+                    src={slide.src}
+                    alt={i === 0 ? contactLabels.heroAlt : slide.alt}
+                    fill
+                    priority={i === 0}
+                    className="object-cover object-center"
+                    sizes="100vw"
+                    quality={90}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-primary/20" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/60 via-transparent to-transparent" />
+
+          {/* Soft bottom fade only — keeps photos clear, text readable */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
 
           <div className="relative mx-auto w-full max-w-6xl px-5 pb-20 pt-36 lg:px-8 lg:pb-28 lg:pt-44">
-            <p className="eyebrow animate-hero-fade-up mb-6 text-primary-foreground/80 hero-delay-1">{t.heroEyebrow}</p>
-            <h1 className="animate-hero-fade-up max-w-3xl font-serif text-5xl leading-[1.02] tracking-tight text-balance md:text-7xl lg:text-8xl hero-delay-2">
+            <p className="eyebrow animate-hero-fade-up mb-6 hero-delay-1 hero-eyebrow">
+              {t.heroEyebrow}
+            </p>
+            <h1 className="hero-text animate-hero-fade-up max-w-3xl font-serif text-5xl leading-[1.02] tracking-tight text-balance md:text-7xl lg:text-8xl hero-delay-2">
               {t.heroTitle}
             </h1>
-            <p className="animate-hero-fade-up mt-7 max-w-md text-base leading-relaxed text-primary-foreground/75 md:text-lg hero-delay-3">
+            <p className="hero-text-muted animate-hero-fade-up mt-7 max-w-md text-base leading-relaxed md:text-lg hero-delay-3">
               {t.heroText}
             </p>
             <div className="animate-hero-fade-up mt-10 flex flex-wrap items-center gap-4 hero-delay-4">
-              <a href={wa(message)} target="_blank" rel="noreferrer" className="btn-whatsapp shadow-xl shadow-black/25">
+              <a href={wa(message)} target="_blank" rel="noreferrer" className="btn-whatsapp shadow-xl shadow-black/35">
                 <WhatsAppIcon className="size-4" />
                 {t.reserve}
               </a>
-              <a href="#riad" className="btn-ghost text-primary-foreground">
+              <a href="#riad" className="btn-ghost border-white/70 bg-black/35 text-white hover:bg-black/50">
                 {t.discover}
                 <ChevronDown className="size-4" />
               </a>
             </div>
           </div>
 
+          <div className="absolute bottom-8 start-1/2 z-10 flex -translate-x-1/2 items-center gap-2.5">
+            {HERO_SLIDES.map((slide, i) => (
+              <button
+                key={slide.src}
+                type="button"
+                aria-label={`Slide ${i + 1}`}
+                aria-current={i === heroSlide}
+                onClick={() => setHeroSlide(i)}
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  i === heroSlide
+                    ? 'w-8 bg-accent'
+                    : 'w-1.5 bg-primary-foreground/45 hover:bg-primary-foreground/70'
+                }`}
+              />
+            ))}
+          </div>
+
           <a
             href="#riad"
             aria-label={t.discover}
-            className="animate-float absolute bottom-8 end-6 flex size-11 items-center justify-center rounded-full border border-primary-foreground/30 text-primary-foreground/70 transition-colors hover:border-accent hover:text-accent lg:end-8"
+            className="animate-float absolute bottom-8 end-6 flex size-11 items-center justify-center rounded-full border border-primary-foreground/35 bg-primary/30 text-primary-foreground/85 transition-colors hover:border-accent hover:text-accent lg:end-8"
           >
             <ChevronDown className="size-5" />
           </a>
         </section>
 
         {/* Trust strip — elevated white cards on cool mist for clear trust signal */}
-        <section className="section-band-stone relative z-10 pb-10 pt-0">
-          <div className="-mt-8 mx-5 lg:mx-auto lg:max-w-5xl">
+        <section className="section-band-stone relative z-10 pb-10 pt-10 md:pt-14">
+          <div className="mx-5 mt-2 lg:mx-auto lg:mt-4 lg:max-w-5xl">
             <div className="premium-card grid grid-cols-2 gap-px overflow-hidden bg-border shadow-lg md:grid-cols-4">
               {trustItems.map(({ icon: Icon, label }) => (
                 <div key={label} className="flex items-center gap-3 bg-card px-5 py-5 md:justify-center md:px-6">
@@ -1096,9 +1147,17 @@ export function RiadSite() {
                 </div>
                 <div>
                   <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-accent">{contactLabels.whatsapp}</span>
-                  <a href={wa(message)} className="dir-ltr inline-block transition-colors hover:text-accent">
-                    {siteConfig.phone}
-                  </a>
+                  <div className="flex flex-col gap-1.5">
+                    <a href={wa(message)} className="dir-ltr inline-block transition-colors hover:text-accent">
+                      {siteConfig.phone}
+                    </a>
+                    <a
+                      href={wa(message, siteConfig.whatsappNumberSecondary)}
+                      className="dir-ltr inline-block transition-colors hover:text-accent"
+                    >
+                      {siteConfig.phoneSecondary}
+                    </a>
+                  </div>
                 </div>
                 <div>
                   <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-accent">{contactLabels.email}</span>
