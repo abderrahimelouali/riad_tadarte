@@ -18,15 +18,6 @@ import { experiences, galleryImages, rooms, siteConfig } from '@/config/site'
 
 type Locale = 'fr' | 'en' | 'es' | 'ar'
 
-/** Three gallery images for the hero auto-scroll — from Why cards */
-const HERO_SLIDES = [
-  { src: '/images/sky-night.jpg', category: 'Gallery', alt: 'An authentic address — Merzouga night sky' },
-  { src: '/images/immersion-desert.jpeg', category: 'Gallery', alt: 'Immersion in the desert — Merzouga dunes' },
-  { src: '/images/peaceful.jpeg', category: 'Gallery', alt: 'A peaceful atmosphere — Riad Tadarte' },
-] as const
-
-const HERO_INTERVAL_MS = 5500
-
 const copy = {
   fr: {
     dir: 'ltr',
@@ -529,7 +520,6 @@ export function RiadSite() {
   const [menu, setMenu] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [arrivalDate, setArrivalDate] = useState('')
-  const [heroSlide, setHeroSlide] = useState(0)
   const t = translations[locale]
   const now = new Date()
   const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
@@ -539,14 +529,6 @@ export function RiadSite() {
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const id = window.setInterval(() => {
-      setHeroSlide((i) => (i + 1) % HERO_SLIDES.length)
-    }, HERO_INTERVAL_MS)
-    return () => window.clearInterval(id)
   }, [])
 
   useEffect(() => {
@@ -696,33 +678,21 @@ export function RiadSite() {
       </header>
 
       <main id="top">
-        {/* Hero — auto-scrolling gallery slides */}
+        {/* Hero — immersion in the desert */}
         <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-primary text-primary-foreground">
-          <div className="absolute inset-0">
-            {HERO_SLIDES.map((slide, i) => (
-              <div
-                key={slide.src}
-                className={`absolute inset-0 transition-opacity duration-[1400ms] ease-in-out ${
-                  i === heroSlide ? 'opacity-100' : 'opacity-0'
-                }`}
-                aria-hidden={i !== heroSlide}
-              >
-                <div className={`absolute inset-0 ${i === heroSlide ? 'animate-hero-zoom' : ''}`}>
-                  <Image
-                    src={slide.src}
-                    alt={i === 0 ? contactLabels.heroAlt : slide.alt}
-                    fill
-                    priority={i === 0}
-                    className="object-cover object-center"
-                    sizes="100vw"
-                    quality={90}
-                  />
-                </div>
-              </div>
-            ))}
+          <div className="absolute inset-0 animate-hero-zoom">
+            <Image
+              src="/images/immersion-desert.jpeg"
+              alt={contactLabels.heroAlt}
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="100vw"
+              quality={90}
+            />
           </div>
 
-          {/* Soft bottom fade only — keeps photos clear, text readable */}
+          {/* Soft bottom fade only — keeps photo clear, text readable */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
 
           <div className="relative mx-auto w-full max-w-6xl px-5 pb-20 pt-36 lg:px-8 lg:pb-28 lg:pt-44">
@@ -745,23 +715,6 @@ export function RiadSite() {
                 <ChevronDown className="size-4" />
               </a>
             </div>
-          </div>
-
-          <div className="absolute bottom-8 start-1/2 z-10 flex -translate-x-1/2 items-center gap-2.5">
-            {HERO_SLIDES.map((slide, i) => (
-              <button
-                key={slide.src}
-                type="button"
-                aria-label={`Slide ${i + 1}`}
-                aria-current={i === heroSlide}
-                onClick={() => setHeroSlide(i)}
-                className={`h-1.5 rounded-full transition-all duration-500 ${
-                  i === heroSlide
-                    ? 'w-8 bg-accent'
-                    : 'w-1.5 bg-primary-foreground/45 hover:bg-primary-foreground/70'
-                }`}
-              />
-            ))}
           </div>
 
           <a
