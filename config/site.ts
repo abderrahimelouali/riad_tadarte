@@ -2,7 +2,7 @@ export const siteConfig = {
   siteName: 'Riad Tadarte',
   tagline: 'Guest house at the gates of the Sahara.',
   location: 'Hassi Labied, Merzouga, 52202',
-  address: 'Hassilabiad Poste Merzouga Province Errachidia Maroc � Hassi Labied Merzouga, 52202',
+  address: 'Hassilabiad Poste Merzouga Province Errachidia Maroc · Hassi Labied Merzouga, 52202',
   phone: '+212 668 563 565',
   phoneSecondary: '+212 628 948 074',
   email: 'riadtadarte@gmail.com',
@@ -385,17 +385,17 @@ export const galleryImages = [
 ]
 
 export const rooms = [
-  { name: 'Chambre Double', description: 'Une chambre chaleureuse pour un s�jour � deux.', capacity: '2 voyageurs', bed: '1 grand lit double', amenities: ['Climatisation', 'Salle de bains priv�e'], image: '/images/gallery/photo_197.jpg' },
-  { name: 'Chambre Double ou Lits Jumeaux', description: 'Une chambre modulable avec deux configurations de couchage.', capacity: '2 voyageurs', bed: '1 lit simple et 1 lit double', amenities: ['Climatisation', 'Salle de bains priv�e'], image: '/images/gallery/photo_189.jpg' },
-  { name: 'Chambre Triple', description: 'Un espace confortable pour les petites familles ou les amis.', capacity: '3 voyageurs', bed: '1 lit simple et 1 lit double', amenities: ['Climatisation', 'Salle de bains priv�e'], image: '/images/gallery/photo_200.jpg' },
-  { name: 'Chambre Quadruple', description: 'Une chambre spacieuse pens�e pour les groupes.', capacity: '4 voyageurs', bed: '4 lits simples', amenities: ['Climatisation', 'Salle de bains priv�e'], image: '/images/gallery/photo_199.jpg' },
-  { name: 'Chambre Familiale avec Salle de Bains', description: 'Le confort d�un espace familial avec salle de bains priv�e.', capacity: '4 voyageurs', bed: '2 lits simples et 1 lit double', amenities: ['Climatisation', 'Salle de bains priv�e'], image: '/images/gallery/photo_195.jpg' },
+  { name: 'Chambre Double', description: 'Une chambre chaleureuse pour un séjour à deux.', capacity: '2 voyageurs', bed: '1 grand lit double', amenities: ['Climatisation', 'Salle de bains privée'], image: '/images/gallery/photo_197.jpg' },
+  { name: 'Chambre Double ou Lits Jumeaux', description: 'Une chambre modulable avec deux configurations de couchage.', capacity: '2 voyageurs', bed: '1 lit simple et 1 lit double', amenities: ['Climatisation', 'Salle de bains privée'], image: '/images/gallery/photo_189.jpg' },
+  { name: 'Chambre Triple', description: 'Un espace confortable pour les petites familles ou les amis.', capacity: '3 voyageurs', bed: '1 lit simple et 1 lit double', amenities: ['Climatisation', 'Salle de bains privée'], image: '/images/gallery/photo_200.jpg' },
+  { name: 'Chambre Quadruple', description: 'Une chambre spacieuse pensée pour les groupes.', capacity: '4 voyageurs', bed: '4 lits simples', amenities: ['Climatisation', 'Salle de bains privée'], image: '/images/gallery/photo_199.jpg' },
+  { name: 'Chambre Familiale avec Salle de Bains', description: 'Le confort d’un espace familial avec salle de bains privée.', capacity: '4 voyageurs', bed: '2 lits simples et 1 lit double', amenities: ['Climatisation', 'Salle de bains privée'], image: '/images/gallery/photo_195.jpg' },
 ]
 
 export const experiences = [
-  { number: '01', title: 'Tours en 4�4 dans la r�gion', description: 'Explorez les villages, les oasis et les paysages remarquables de la r�gion de Merzouga en v�hicule tout-terrain.', image: '/images/4x4.jpg', bookable: true },
-  { number: '02', title: 'Excursions en quad', description: 'Partez � l�aventure sur les pistes de sable et les dunes autour de Merzouga.', image: '/images/quad.jpg', bookable: true },
-  { number: '03', title: 'Randonn�e avec les dromadaires', description: 'D�couvrez le d�sert au rythme paisible des dromadaires, avec un coucher de soleil inoubliable.', image: '/images/camel-tour.jpg', bookable: true },
-  { number: '04', title: 'Nuit dans le d�sert', description: 'Passez une nuit authentique dans le d�sert, � la belle �toile, au c�ur des dunes.', image: '/images/sahara-night.jpg', bookable: true },
-  { number: '05', title: 'Trekking dans le d�sert', description: 'Partez pour plusieurs jours de marche et vivez une immersion profonde dans les paysages du Sahara.', image: '/images/multi-day-desert.jpg', bookable: true },
+  { number: '01', title: 'Tours en 4×4 dans la région', description: 'Explorez les villages, les oasis et les paysages remarquables de la région de Merzouga en véhicule tout-terrain.', image: '/images/4x4.jpg', bookable: true },
+  { number: '02', title: 'Excursions en quad', description: 'Partez à l’aventure sur les pistes de sable et les dunes autour de Merzouga.', image: '/images/quad.jpg', bookable: true },
+  { number: '03', title: 'Randonnée avec les dromadaires', description: 'Découvrez le désert au rythme paisible des dromadaires, avec un coucher de soleil inoubliable.', image: '/images/camel-tour.jpg', bookable: true },
+  { number: '04', title: 'Nuit dans le désert', description: 'Passez une nuit authentique dans le désert, à la belle étoile, au cœur des dunes.', image: '/images/sahara-night.jpg', bookable: true },
+  { number: '05', title: 'Trekking dans le désert', description: 'Partez pour plusieurs jours de marche et vivez une immersion profonde dans les paysages du Sahara.', image: '/images/multi-day-desert.jpg', bookable: true },
 ]
